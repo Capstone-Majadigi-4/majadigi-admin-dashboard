@@ -1,0 +1,44 @@
+{
+  "pasar": [
+    { "id": "psr-001", "nama": "Pasar Keputran" },
+    { "id": "psr-002", "nama": "Pasar Wonokromo" },
+    { "id": "psr-003", "nama": "Pasar Tambak Rejo" }
+  ],
+  "komoditas": [
+    { "id": "kom-001", "nama": "Beras Medium", "kategori": "Beras", "satuan": "kg", "is_active": true, "harga_rata_rata": 13500, "harga_terendah": 12000, "harga_tertinggi": 15000, "tanggal_harga": "2026-06-08" },
+    { "id": "kom-002", "nama": "Beras Premium", "kategori": "Beras", "satuan": "kg", "is_active": true, "harga_rata_rata": 16000, "harga_terendah": 15000, "harga_tertinggi": 17500, "tanggal_harga": "2026-06-08" },
+    { "id": "kom-003", "nama": "Gula Pasir", "kategori": "Gula", "satuan": "kg", "is_active": true, "harga_rata_rata": 17500, "harga_terendah": 17000, "harga_tertinggi": 18000, "tanggal_harga": "2026-06-08" },
+    { "id": "kom-004", "nama": "Minyak Goreng", "kategori": "Minyak", "satuan": "liter", "is_active": true, "harga_rata_rata": 19000, "harga_terendah": 18000, "harga_tertinggi": 20500, "tanggal_harga": "2026-06-08" },
+    { "id": "kom-005", "nama": "Daging Sapi", "kategori": "Daging", "satuan": "kg", "is_active": true, "harga_rata_rata": 135000, "harga_terendah": 130000, "harga_tertinggi": 140000, "tanggal_harga": "2026-06-08" },
+    { "id": "kom-006", "nama": "Ayam Broiler", "kategori": "Daging", "satuan": "kg", "is_active": true, "harga_rata_rata": 38000, "harga_terendah": 35000, "harga_tertinggi": 41000, "tanggal_harga": "2026-06-08" },
+    { "id": "kom-007", "nama": "Telur Ayam", "kategori": "Telur", "satuan": "kg", "is_active": true, "harga_rata_rata": 29000, "harga_terendah": 27000, "harga_tertinggi": 31000, "tanggal_harga": "2026-06-08" },
+    { "id": "kom-008", "nama": "Tepung Terigu", "kategori": "Tepung", "satuan": "kg", "is_active": true, "harga_rata_rata": 11000, "harga_terendah": 10000, "harga_tertinggi": 12500, "tanggal_harga": "2026-06-08" }
+  ],
+  "hargaHarian": [
+    { "id": "hh-001", "komoditas_id": "kom-001", "nama_komoditas": "Beras Medium", "satuan": "kg", "pasar_id": "psr-001", "nama_pasar": "Pasar Keputran", "harga": 13000, "tanggal": "2026-06-08" },
+    { "id": "hh-002", "komoditas_id": "kom-001", "nama_komoditas": "Beras Medium", "satuan": "kg", "pasar_id": "psr-002", "nama_pasar": "Pasar Wonokromo", "harga": 13500, "tanggal": "2026-06-08" },
+    { "id": "hh-003", "komoditas_id": "kom-003", "nama_komoditas": "Gula Pasir", "satuan": "kg", "pasar_id": "psr-001", "nama_pasar": "Pasar Keputran", "harga": 17500, "tanggal": "2026-06-08" },
+    { "id": "hh-004", "komoditas_id": "kom-004", "nama_komoditas": "Minyak Goreng", "satuan": "liter", "pasar_id": "psr-002", "nama_pasar": "Pasar Wonokromo", "harga": 19000, "tanggal": "2026-06-08" },
+    { "id": "hh-005", "komoditas_id": "kom-005", "nama_komoditas": "Daging Sapi", "satuan": "kg", "pasar_id": "psr-003", "nama_pasar": "Pasar Tambak Rejo", "harga": 135000, "tanggal": "2026-06-08" }
+  ],
+  "ticker": [
+    { "komoditas_id": "kom-006", "nama": "Ayam Broiler", "harga_sekarang": 38000, "harga_kemarin": 35000, "perubahan_persen": 8.57, "arah": "naik" },
+    { "komoditas_id": "kom-004", "nama": "Minyak Goreng", "harga_sekarang": 19000, "harga_kemarin": 20000, "perubahan_persen": -5.00, "arah": "turun" },
+    { "komoditas_id": "kom-005", "nama": "Daging Sapi", "harga_sekarang": 135000, "harga_kemarin": 132000, "perubahan_persen": 2.27, "arah": "naik" }
+  ],
+  "priceAlert": [
+    { "id": "pa-001", "user_nik": "357801****0001", "komoditas_id": "kom-005", "nama_komoditas": "Daging Sapi", "tipe": "naik_diatas", "nominal": 140000, "is_active": true, "created_at": "2026-06-01T08:00:00Z" },
+    { "id": "pa-002", "user_nik": "357801****0002", "komoditas_id": "kom-003", "nama_komoditas": "Gula Pasir", "tipe": "turun_dibawah", "nominal": 16000, "is_active": true, "created_at": "2026-06-02T10:30:00Z" }
+  ],
+  "hargaHistori": {
+    "kom-001": [
+      { "tanggal": "2026-06-02", "harga": 13200, "nama_pasar": "Rata-rata" },
+      { "tanggal": "2026-06-03", "harga": 13100, "nama_pasar": "Rata-rata" },
+      { "tanggal": "2026-06-04", "harga": 13400, "nama_pasar": "Rata-rata" },
+      { "tanggal": "2026-06-05", "harga": 13500, "nama_pasar": "Rata-rata" },
+      { "tanggal": "2026-06-06", "harga": 13300, "nama_pasar": "Rata-rata" },
+      { "tanggal": "2026-06-07", "harga": 13600, "nama_pasar": "Rata-rata" },
+      { "tanggal": "2026-06-08", "harga": 13500, "nama_pasar": "Rata-rata" }
+    ]
+  }
+}
