@@ -26,7 +26,7 @@ export const navigation: NavItem[] = [
     path: '/bapok',
     children: [
       { label: 'Harga Pasar', icon: 'chart-line', path: '/bapok/harga' },
-      { label: 'Komoditas', icon: 'bell', path: '/bapok/alert' },
+      { label: 'Komoditas', icon: 'bell', path: '/bapok/komoditas' },
     ],
   },
   {
@@ -45,10 +45,5 @@ export const navigation: NavItem[] = [
     children: [
       { label: 'Armada', icon: 'map-pin', path: '/transjatim/armada' },
     ],
-  },
-  {
-    label: 'Pengguna',
-    icon: 'users',
-    path: '/auth/users',
   },
 ];

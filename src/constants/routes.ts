@@ -6,7 +6,7 @@ export const ROUTES = {
   RSUD_ANTRIAN: '/rsud/antrian',
   RSUD_DOKTER: '/rsud/dokter',
   BAPOK_HARGA: '/bapok/harga',
-  BAPOK_ALERT: '/bapok/alert',
+  BAPOK_ALERT: '/bapok/komoditas',
   ISLAMIC_ACARA: '/islamic/acara',
   ISLAMIC_BOOKING: '/islamic/booking',
   TRANSJATIM_ARMADA: '/transjatim/armada',

@@ -86,8 +86,13 @@ const modules = [
     menus: [
       {
         label: "Harga Pasar",
-        path: "/komoditas",
+        path: "/bapok/harga",
         desc: "Pantau harga rata-rata bahan pokok harian",
+      },
+      {
+        label: "Komoditas",
+        path: "/bapok/komoditas",
+        desc: "Pantau ketersediaan dan harga komoditas",
       },
     ],
   },
@@ -112,7 +117,7 @@ const modules = [
     menus: [
       {
         label: "Rute & Koridor",
-        path: "/transjatim",
+        path: "/transjatim/armada",
         desc: "Informasi jalur operasional dan halte aktif",
       },
     ],
