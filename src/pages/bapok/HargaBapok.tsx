@@ -4,7 +4,7 @@ import { Badge, Button, Card, CardBody, CardHeader, Modal } from '../../componen
 import { useFetch } from '../../hooks/useFetch';
 import { apiFetch } from '../../services/apiClient';
 import { useUIStore } from '../../store/useUIStore';
-import type { HargaHarian, Komoditas, Koperasi } from '../../types';
+import type { HargaHarian, Komoditas, Koperasi, Pasar } from '../../types';
 
 interface InputHargaKoperasiForm {
   komoditas_id: string;
@@ -14,13 +14,6 @@ interface InputHargaKoperasiForm {
 }
 
 const BAPOK_ADMIN_KEY = import.meta.env.VITE_BAPOK_ADMIN_KEY as string | undefined;
-
-const PASAR_LIST = [
-  { id: '6704666d-59d8-44b3-a6fb-e5a62ff3387a', nama: 'Pasar Besar Malang' },
-  { id: '66be6309-f7be-4b2b-95c4-ca6c70233a5f', nama: 'Pasar Blimbing' },
-  { id: '18f3098c-9682-4668-887b-4c0b6a7f2024', nama: 'Pasar Oro-Oro Dowo' },
-  { id: 'cc882abe-f9df-4abe-927a-b5342d052c2e', nama: 'Pasar Sukun' },
-];
 
 const todayISO = () => new Date().toISOString().split('T')[0];
 
@@ -43,6 +36,7 @@ export function HargaBapok() {
 
   const { data: harga, loading: loadingHarga, refetch: refetchHarga } = useFetch<HargaHarian[]>(hargaParams);
   const { data: komoditas, loading: loadingKomoditas } = useFetch<Komoditas[]>('/bapok/komoditas');
+  const { data: pasarList } = useFetch<Pasar[]>('/bapok/pasar');
   const { data: koperasiList } = useFetch<Koperasi[]>('/bapok/koperasi');
 
   const [showInputModal, setShowInputModal] = useState(false);
@@ -366,7 +360,7 @@ export function HargaBapok() {
               className={inputCls}
             >
               <option value="">-- Pilih pasar --</option>
-              {PASAR_LIST.map((p) => (
+              {(pasarList ?? []).map((p) => (
                 <option key={p.id} value={p.id}>{p.nama}</option>
               ))}
             </select>

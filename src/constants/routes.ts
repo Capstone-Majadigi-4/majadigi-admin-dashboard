@@ -9,6 +9,5 @@ export const ROUTES = {
   BAPOK_ALERT: '/bapok/alert',
   ISLAMIC_ACARA: '/islamic/acara',
   ISLAMIC_BOOKING: '/islamic/booking',
-  TRANSJATIM_TIKET: '/transjatim/tiket',
   TRANSJATIM_ARMADA: '/transjatim/armada',
 } as const;

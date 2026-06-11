@@ -18,8 +18,8 @@ export function useAuth() {
       throw new Error(json.message ?? 'Login gagal');
     }
 
-    const { user: userData, access_token } = json.data;
-    login(userData, access_token);
+    const { user: userData, access_token, refresh_token } = json.data;
+    login(userData, access_token, refresh_token);
   };
 
   const logoutFromServer = async (): Promise<void> => {

@@ -6,7 +6,9 @@ interface AuthState {
   isAuthenticated: boolean;
   user: User | null;
   token: string | null;
-  login: (user: User, token: string) => void;
+  refreshToken: string | null;
+  login: (user: User, accessToken: string, refreshToken: string) => void;
+  setTokens: (accessToken: string, refreshToken: string) => void;
   logout: () => void;
 }
 
@@ -16,8 +18,13 @@ export const useAuthStore = create<AuthState>()(
       isAuthenticated: false,
       user: null,
       token: null,
-      login: (user, token) => set({ isAuthenticated: true, user, token }),
-      logout: () => set({ isAuthenticated: false, user: null, token: null }),
+      refreshToken: null,
+      login: (user, accessToken, refreshToken) =>
+        set({ isAuthenticated: true, user, token: accessToken, refreshToken }),
+      setTokens: (accessToken, refreshToken) =>
+        set({ token: accessToken, refreshToken }),
+      logout: () =>
+        set({ isAuthenticated: false, user: null, token: null, refreshToken: null }),
     }),
     { name: 'majadigi-auth' }
   )

@@ -8,7 +8,6 @@ import { HargaBapok } from './pages/bapok/HargaBapok';
 import { AlertBapok } from './pages/bapok/AlertBapok';
 import { Acara } from './pages/islamic/Acara';
 import { Booking } from './pages/islamic/Booking';
-import { Tiket } from './pages/transjatim/Tiket';
 import { Armada } from './pages/transjatim/Armada';
 import { Users } from './pages/auth/Users';
 import { ROUTES } from './constants/routes';
@@ -27,7 +26,6 @@ export default function App() {
           <Route path={ROUTES.BAPOK_ALERT} element={<AlertBapok />} />
           <Route path={ROUTES.ISLAMIC_ACARA} element={<Acara />} />
           <Route path={ROUTES.ISLAMIC_BOOKING} element={<Booking />} />
-          <Route path={ROUTES.TRANSJATIM_TIKET} element={<Tiket />} />
           <Route path={ROUTES.TRANSJATIM_ARMADA} element={<Armada />} />
           <Route path={ROUTES.AUTH_USERS} element={<Users />} />
         </Route>

@@ -43,7 +43,6 @@ export const navigation: NavItem[] = [
     icon: 'bus',
     path: '/transjatim',
     children: [
-      { label: 'Tiket', icon: 'ticket', path: '/transjatim/tiket' },
       { label: 'Armada', icon: 'map-pin', path: '/transjatim/armada' },
     ],
   },
