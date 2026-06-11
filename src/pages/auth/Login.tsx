@@ -29,35 +29,22 @@ export function Login() {
 
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
-      <div className="sm:mx-auto sm:w-full sm:max-w-md text-center">
-        <div className="inline-flex items-center justify-center w-16 h-16 bg-[#004a99] rounded-2xl mb-4 shadow-lg shadow-[#004a99]/20">
-          <svg
-            className="w-8 h-8 text-white"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+      <div className="sm:mx-auto sm:w-full sm:max-w-[420px]">
+        <div className="bg-white py-10 px-6 shadow-xl shadow-[#004a99]/5 sm:rounded-2xl sm:px-10 border border-slate-100">
+          {/* Bagian Header & Logo (Sekarang di dalam Card) */}
+          <div className="text-center mb-8">
+            <img
+              src="/logo.png"
+              alt="Logo Majadigi"
+              className="mx-auto h-14 mb-5 w-auto object-contain"
             />
-          </svg>
-        </div>
-        <h1 className="text-2xl font-bold text-slate-900 tracking-tight">
-          Majadigi Admin
-        </h1>
-        <p className="text-slate-500 text-[13px] font-medium mt-1">
-          Platform Layanan Publik
-        </p>
-      </div>
-
-      <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-        <div className="bg-white py-8 px-4 shadow-xl shadow-slate-200/50 sm:rounded-2xl sm:px-10 border border-slate-100">
-          <h2 className="text-[17px] font-bold text-slate-800 mb-6 text-center">
-            Masuk ke Dashboard
-          </h2>
+            <h1 className="text-[18px] font-bold text-slate-800 tracking-tight">
+              Masuk ke Dashboard
+            </h1>
+            <p className="text-slate-500 text-[13px] font-medium mt-1.5">
+              Gunakan NIK dan password admin Anda
+            </p>
+          </div>
 
           <form action={handleSubmit} className="space-y-5">
             <div>
@@ -113,7 +100,7 @@ export function Login() {
               </div>
             )}
 
-            <div className="pt-2">
+            <div className="pt-3">
               <Button type="submit" className="w-full py-3" loading={loading}>
                 Masuk
               </Button>
@@ -121,7 +108,7 @@ export function Login() {
           </form>
         </div>
 
-        <p className="text-center text-xs text-slate-400 font-medium mt-6">
+        <p className="text-center text-xs text-slate-400 font-medium mt-8">
           &copy; {new Date().getFullYear()} Majadigi. All rights reserved.
         </p>
       </div>
