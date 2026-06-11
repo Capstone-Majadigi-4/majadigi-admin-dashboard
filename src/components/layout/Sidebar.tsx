@@ -226,11 +226,9 @@ function NavItemLink({ item, depth = 0 }: { item: NavItem; depth?: number }) {
     return (
       <div className="mb-1">
         <div
-          className={`flex items-center gap-3 px-3 py-2 mt-5 mb-1 text-[11px] font-bold text-slate-500 uppercase tracking-widest ${depth > 0 ? "pl-8" : ""}`}
+          className={`flex items-center gap-3 px-4 py-2 mt-5 mb-1 text-[11px] font-bold text-slate-400 uppercase tracking-widest ${depth > 0 ? "pl-8" : ""}`}
         >
-          {item.icon && (
-            <span className="shrink-0 opacity-60">{icons[item.icon]}</span>
-          )}
+          {item.icon && <span className="shrink-0">{icons[item.icon]}</span>}
           <span>{item.label}</span>
         </div>
         <div className="space-y-1">
@@ -246,19 +244,17 @@ function NavItemLink({ item, depth = 0 }: { item: NavItem; depth?: number }) {
     <NavLink
       to={item.path}
       className={({ isActive }) =>
-        `group flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm transition-all duration-200 ease-in-out ${depth > 0 ? "ml-5" : ""} ${
+        `group flex items-center gap-3 px-4 py-2.5 mx-2 rounded-lg text-sm font-medium transition-colors ${depth > 0 ? "ml-6" : ""} ${
           isActive
-            ? "bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold shadow-md shadow-blue-500/20"
-            : "text-slate-400 hover:bg-slate-800/60 hover:text-slate-100"
+            ? "bg-[#004a99] text-white"
+            : "text-slate-600 hover:bg-blue-50 hover:text-[#004a99]"
         }`
       }
     >
       <span className="shrink-0 transition-transform duration-200 group-hover:scale-110">
         {icons[item.icon]}
       </span>
-      <span className="transition-transform duration-200 group-hover:translate-x-0.5">
-        {item.label}
-      </span>
+      <span>{item.label}</span>
     </NavLink>
   );
 }
@@ -268,12 +264,12 @@ export function Sidebar() {
 
   return (
     <aside
-      className={`fixed top-0 left-0 h-screen bg-[#0B1121] border-r border-slate-800 flex flex-col transition-all duration-300 ease-in-out z-40 ${
+      className={`fixed top-0 left-0 h-screen bg-white border-r border-slate-200 flex flex-col transition-all duration-300 ease-in-out z-40 ${
         sidebarOpen ? "w-64 opacity-100" : "w-0 opacity-0 pointer-events-none"
       }`}
     >
-      <div className="flex items-center gap-4 px-5 py-6 border-b border-slate-800/80 shrink-0">
-        <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-500/30">
+      <div className="flex items-center gap-4 px-6 py-5 border-b border-slate-200 shrink-0">
+        <div className="w-10 h-10 bg-[#004a99] rounded-lg flex items-center justify-center">
           <svg
             className="w-6 h-6 text-white"
             fill="none"
@@ -289,25 +285,25 @@ export function Sidebar() {
           </svg>
         </div>
         <div className="flex flex-col">
-          <h1 className="text-slate-100 font-bold text-lg tracking-tight leading-none mb-1">
+          <h1 className="text-[#004a99] font-bold text-lg tracking-tight leading-none mb-1">
             Majadigi
           </h1>
-          <span className="text-indigo-400 text-[10px] font-bold uppercase tracking-widest">
+          <span className="text-slate-500 text-[10px] font-bold uppercase tracking-widest">
             Admin Panel
           </span>
         </div>
       </div>
 
-      <nav className="flex-1 overflow-y-auto px-4 py-6 space-y-1">
+      <nav className="flex-1 overflow-y-auto py-4 space-y-1">
         {navigation.map((item) => (
           <NavItemLink key={item.path} item={item} />
         ))}
       </nav>
 
-      <div className="p-4 border-t border-slate-800/80 shrink-0 bg-[#0B1121]/50 backdrop-blur-sm">
-        <div className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-slate-800/30 border border-slate-700/50 hover:bg-slate-800/50 transition-colors cursor-default">
-          <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></div>
-          <p className="text-slate-400 text-xs font-medium tracking-wide">
+      <div className="px-6 py-4 border-t border-slate-200 shrink-0 bg-slate-50">
+        <div className="flex items-center justify-center gap-2">
+          <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
+          <p className="text-slate-500 text-xs font-medium">
             Majadigi Admin v1.0
           </p>
         </div>

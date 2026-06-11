@@ -9,9 +9,11 @@ interface CardHeaderProps {
   action?: React.ReactNode;
 }
 
-export function Card({ children, className = '' }: CardProps) {
+export function Card({ children, className = "" }: CardProps) {
   return (
-    <div className={`bg-white rounded-xl border border-gray-200 shadow-sm ${className}`}>
+    <div
+      className={`bg-white rounded-2xl border border-slate-200 shadow-sm shadow-slate-100/50 ${className}`}
+    >
       {children}
     </div>
   );
@@ -19,16 +21,24 @@ export function Card({ children, className = '' }: CardProps) {
 
 export function CardHeader({ title, subtitle, action }: CardHeaderProps) {
   return (
-    <div className="flex items-start justify-between px-6 py-4 border-b border-gray-100">
-      <div>
-        <h3 className="text-base font-semibold text-gray-900">{title}</h3>
-        {subtitle && <p className="text-sm text-gray-500 mt-0.5">{subtitle}</p>}
+    <div className="flex items-center justify-between px-6 py-5 border-b border-slate-100">
+      <div className="flex flex-col justify-center">
+        <h3 className="text-[15px] font-bold text-slate-800 tracking-tight leading-none">
+          {title}
+        </h3>
+        {subtitle && (
+          <p className="text-xs font-medium text-slate-500 mt-1.5">
+            {subtitle}
+          </p>
+        )}
       </div>
-      {action && <div className="ml-4 shrink-0">{action}</div>}
+      {action && (
+        <div className="ml-4 shrink-0 flex items-center">{action}</div>
+      )}
     </div>
   );
 }
 
-export function CardBody({ children, className = '' }: CardProps) {
-  return <div className={`px-6 py-4 ${className}`}>{children}</div>;
+export function CardBody({ children, className = "" }: CardProps) {
+  return <div className={`p-6 ${className}`}>{children}</div>;
 }

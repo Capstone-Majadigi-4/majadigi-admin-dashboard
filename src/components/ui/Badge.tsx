@@ -1,4 +1,4 @@
-type BadgeVariant = 'success' | 'warning' | 'danger' | 'info' | 'neutral';
+type BadgeVariant = "success" | "warning" | "danger" | "info" | "neutral";
 
 interface BadgeProps {
   variant?: BadgeVariant;
@@ -6,16 +6,18 @@ interface BadgeProps {
 }
 
 const variantClass: Record<BadgeVariant, string> = {
-  success: 'bg-green-100 text-green-700',
-  warning: 'bg-yellow-100 text-yellow-700',
-  danger: 'bg-red-100 text-red-700',
-  info: 'bg-blue-100 text-blue-700',
-  neutral: 'bg-gray-100 text-gray-600',
+  success: "bg-emerald-50 text-emerald-600 border-emerald-200",
+  warning: "bg-amber-50 text-amber-600 border-amber-200",
+  danger: "bg-rose-50 text-rose-600 border-rose-200",
+  info: "bg-blue-50 text-blue-600 border-blue-200",
+  neutral: "bg-slate-50 text-slate-600 border-slate-200",
 };
 
-export function Badge({ variant = 'neutral', children }: BadgeProps) {
+export function Badge({ variant = "neutral", children }: BadgeProps) {
   return (
-    <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${variantClass[variant]}`}>
+    <span
+      className={`inline-flex items-center px-2.5 py-0.5 rounded-md text-[11px] font-bold uppercase tracking-wider border ${variantClass[variant]}`}
+    >
       {children}
     </span>
   );
