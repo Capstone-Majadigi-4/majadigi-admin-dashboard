@@ -17,13 +17,13 @@ export interface Halte {
 
 export interface Armada {
   id: string;
-  nomor_kendaraan: string;
   koridor_id: string;
-  nama_koridor: string;
-  lat?: number;
-  lng?: number;
-  updated_at?: string;
+  kode_bus: string;
+  kapasitas: number;
+  lat: number | null;
+  lng: number | null;
   status: 'aktif' | 'nonaktif';
+  updated_at: string;
 }
 
 export type TiketStatus = 'valid' | 'digunakan' | 'expired';
