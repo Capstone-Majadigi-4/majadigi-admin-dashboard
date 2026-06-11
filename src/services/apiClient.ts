@@ -89,7 +89,7 @@ export async function apiFetch<T>(endpoint: string, options: ApiOptions = {}): P
       } catch (err) {
         processQueue(err, null);
         useAuthStore.getState().logout();
-        window.location.href = '/login';
+        globalThis.location.href = '/login';
         throw err;
       } finally {
         isRefreshing = false;

@@ -45,7 +45,7 @@ function LiveMonitor({ poli }: { poli: Poli }) {
     setCurrentCalled(null);
     setWaitingList([]);
 
-    const socket: Socket = io("http://157.10.253.219", {
+    const socket: Socket = io("https://157.10.253.219", {
       path: "/api/v1/rsud/antrean/live", // Path sesuai konfigurasi backend
       query: { poli_id: poli.id },
       reconnection: true,
