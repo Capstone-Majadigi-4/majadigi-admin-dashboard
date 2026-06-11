@@ -5,7 +5,8 @@ import type { User } from '../types';
 interface AuthState {
   isAuthenticated: boolean;
   user: User | null;
-  login: (user: User) => void;
+  token: string | null;
+  login: (user: User, token: string) => void;
   logout: () => void;
 }
 
@@ -14,8 +15,9 @@ export const useAuthStore = create<AuthState>()(
     (set) => ({
       isAuthenticated: false,
       user: null,
-      login: (user) => set({ isAuthenticated: true, user }),
-      logout: () => set({ isAuthenticated: false, user: null }),
+      token: null,
+      login: (user, token) => set({ isAuthenticated: true, user, token }),
+      logout: () => set({ isAuthenticated: false, user: null, token: null }),
     }),
     { name: 'majadigi-auth' }
   )

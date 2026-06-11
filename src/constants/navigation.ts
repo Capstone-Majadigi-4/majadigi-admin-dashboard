@@ -25,8 +25,8 @@ export const navigation: NavItem[] = [
     icon: 'shopping-basket',
     path: '/bapok',
     children: [
-      { label: 'Harga', icon: 'chart-line', path: '/bapok/harga' },
-      { label: 'Price Alert', icon: 'bell', path: '/bapok/alert' },
+      { label: 'Harga Pasar', icon: 'chart-line', path: '/bapok/harga' },
+      { label: 'Komoditas', icon: 'bell', path: '/bapok/alert' },
     ],
   },
   {

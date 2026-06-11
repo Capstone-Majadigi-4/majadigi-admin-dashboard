@@ -2,6 +2,7 @@ import { Navigate, Outlet } from 'react-router-dom';
 import { useAuthStore } from '../../store/useAuthStore';
 import { Sidebar } from './Sidebar';
 import { Navbar } from './Navbar';
+import { ToastContainer } from '../ui';
 import { useUIStore } from '../../store/useUIStore';
 import { ROUTES } from '../../constants/routes';
 
@@ -25,6 +26,7 @@ export function ProtectedRoute() {
           <Outlet />
         </main>
       </div>
+      <ToastContainer />
     </div>
   );
 }

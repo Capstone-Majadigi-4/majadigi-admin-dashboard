@@ -1,48 +1,43 @@
 import { useState, useEffect } from 'react';
+import { apiFetch } from '../services/apiClient';
 
 interface FetchState<T> {
   data: T | null;
   loading: boolean;
   error: string | null;
+  refetch: () => void;
 }
 
-const serviceModules: Record<string, () => Promise<unknown>> = {
-  rsud: () => import('../services/rsud.json'),
-  bapok: () => import('../services/bapok.json'),
-  islamic: () => import('../services/islamic.json'),
-  transjatim: () => import('../services/transjatim.json'),
-  auth: () => import('../services/auth.json'),
-};
-
-export function useFetch<T>(serviceName: string): FetchState<T> {
-  const [state, setState] = useState<FetchState<T>>({
-    data: null,
-    loading: true,
-    error: null,
-  });
+export function useFetch<T>(endpoint: string): FetchState<T> {
+  const [data, setData] = useState<T | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [tick, setTick] = useState(0);
 
   useEffect(() => {
     const controller = new AbortController();
 
-    const loader = serviceModules[serviceName];
-    const promise: Promise<unknown> = loader
-      ? loader()
-      : Promise.reject(new Error(`Service "${serviceName}" not found`));
-
-    promise
-      .then((mod) => {
+    Promise.resolve()
+      .then(() => {
+        setLoading(true);
+        setError(null);
+        return apiFetch<T>(endpoint, { signal: controller.signal });
+      })
+      .then((result) => {
         if (controller.signal.aborted) return;
-        const raw = mod as { default: T };
-        setState({ data: raw.default, loading: false, error: null });
+        setData(result);
+        setLoading(false);
       })
       .catch((err: unknown) => {
         if (controller.signal.aborted) return;
-        const message = err instanceof Error ? err.message : 'Unknown error';
-        setState({ data: null, loading: false, error: message });
+        setError(err instanceof Error ? err.message : 'Unknown error');
+        setLoading(false);
       });
 
     return () => controller.abort();
-  }, [serviceName]);
+  }, [endpoint, tick]);
 
-  return state;
+  const refetch = () => setTick((t) => t + 1);
+
+  return { data, loading, error, refetch };
 }

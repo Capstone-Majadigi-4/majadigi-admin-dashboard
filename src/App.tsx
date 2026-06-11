@@ -4,8 +4,8 @@ import { Login } from './pages/auth/Login';
 import { Dashboard } from './pages/Dashboard';
 import { Antrian } from './pages/rsud/Antrian';
 import { Dokter } from './pages/rsud/Dokter';
-import { Harga } from './pages/bapok/Harga';
-import { Alert } from './pages/bapok/Alert';
+import { HargaBapok } from './pages/bapok/HargaBapok';
+import { AlertBapok } from './pages/bapok/AlertBapok';
 import { Acara } from './pages/islamic/Acara';
 import { Booking } from './pages/islamic/Booking';
 import { Tiket } from './pages/transjatim/Tiket';
@@ -23,8 +23,8 @@ export default function App() {
           <Route path={ROUTES.DASHBOARD} element={<Dashboard />} />
           <Route path={ROUTES.RSUD_ANTRIAN} element={<Antrian />} />
           <Route path={ROUTES.RSUD_DOKTER} element={<Dokter />} />
-          <Route path={ROUTES.BAPOK_HARGA} element={<Harga />} />
-          <Route path={ROUTES.BAPOK_ALERT} element={<Alert />} />
+          <Route path={ROUTES.BAPOK_HARGA} element={<HargaBapok />} />
+          <Route path={ROUTES.BAPOK_ALERT} element={<AlertBapok />} />
           <Route path={ROUTES.ISLAMIC_ACARA} element={<Acara />} />
           <Route path={ROUTES.ISLAMIC_BOOKING} element={<Booking />} />
           <Route path={ROUTES.TRANSJATIM_TIKET} element={<Tiket />} />

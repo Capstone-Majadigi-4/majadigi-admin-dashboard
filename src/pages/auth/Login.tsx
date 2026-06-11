@@ -1,31 +1,30 @@
-import { useState, type FormEvent } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
 import { Button } from '../../components/ui';
 import { ROUTES } from '../../constants/routes';
 
 export function Login() {
-  const { loginDummy } = useAuth();
+  const { loginWithCredentials } = useAuth();
   const navigate = useNavigate();
-  const [nik, setNik] = useState('');
-  const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = async (formData: FormData) => {
+    const nik = formData.get('nik') as string;
+    const password = formData.get('password') as string;
+
     setError('');
     setLoading(true);
 
-    setTimeout(() => {
-      const ok = loginDummy(nik, password);
-      if (ok) {
-        navigate(ROUTES.DASHBOARD);
-      } else {
-        setError('NIK atau password salah. Gunakan: admin / admin123');
-      }
+    try {
+      await loginWithCredentials(nik, password);
+      navigate(ROUTES.DASHBOARD);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Login gagal');
+    } finally {
       setLoading(false);
-    }, 600);
+    }
   };
 
   return (
@@ -44,25 +43,29 @@ export function Login() {
         <div className="bg-white rounded-2xl shadow-xl p-6">
           <h2 className="text-lg font-semibold text-gray-900 mb-5">Masuk ke Dashboard</h2>
 
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form action={handleSubmit} className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1.5">NIK / Username</label>
+              <label htmlFor="nik" className="block text-sm font-medium text-gray-700 mb-1.5">
+                NIK
+              </label>
               <input
+                id="nik"
+                name="nik"
                 type="text"
-                value={nik}
-                onChange={(e) => setNik(e.target.value)}
-                placeholder="Masukkan NIK atau username"
+                placeholder="Masukkan NIK 16 digit"
                 className="w-full px-3 py-2.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 required
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1.5">Password</label>
+              <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1.5">
+                Password
+              </label>
               <input
+                id="password"
+                name="password"
                 type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
                 placeholder="Masukkan password"
                 className="w-full px-3 py-2.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 required
@@ -77,10 +80,6 @@ export function Login() {
               Masuk
             </Button>
           </form>
-
-          <p className="text-center text-xs text-gray-400 mt-5">
-            Demo: <span className="font-mono">admin</span> / <span className="font-mono">admin123</span>
-          </p>
         </div>
       </div>
     </div>

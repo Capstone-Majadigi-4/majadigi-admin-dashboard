@@ -1,13 +1,18 @@
 export interface Dokter {
   id: string;
   nama: string;
-  spesialisasi: string;
+  spesialis: string;
+  foto_url: string | null;
+  jam_mulai: string;
+  jam_selesai: string;
+  kuota_per_hari: number;
   jadwal: string[];
 }
 
 export interface Poli {
   id: string;
   nama: string;
+  lantai?: string;
   dokter: Dokter[];
 }
 
@@ -32,4 +37,17 @@ export interface Kamar {
   kelas: string;
   kapasitas: number;
   terisi: number;
+  tersedia: number;
+}
+
+export interface KamarResponse {
+  total_kamar: number;
+  tersedia: number;
+  ruangan: Kamar[];
+}
+
+export interface RsudService {
+  poli: Poli[];
+  antrian: Antrean[];
+  kamar: KamarResponse;
 }
