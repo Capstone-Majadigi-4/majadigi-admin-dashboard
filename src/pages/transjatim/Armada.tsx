@@ -80,7 +80,7 @@ function ArmadaTable({
     if (!koridorId) return;
 
     // Menghapus transports: ["websocket"] agar menggunakan default fallback (polling -> websocket)
-    const socket: Socket = io("http://157.10.253.219", {
+    const socket: Socket = io("https://157.10.253.219", {
       path: "/api/v1/transjatim/armada/live",
       query: { koridor_id: koridorId },
       reconnection: true,
