@@ -1,0 +1,102 @@
+{
+  "poli": [
+    {
+      "id": "poli-001",
+      "nama": "Penyakit Dalam",
+      "dokter": [
+        { "id": "dr-001", "nama": "dr. Ahmad Fauzi Sp.PD", "spesialisasi": "Penyakit Dalam", "jadwal": ["Senin", "Rabu", "Jumat"] },
+        { "id": "dr-002", "nama": "dr. Siti Rahayu Sp.PD", "spesialisasi": "Penyakit Dalam", "jadwal": ["Selasa", "Kamis"] }
+      ]
+    },
+    {
+      "id": "poli-002",
+      "nama": "Bedah Umum",
+      "dokter": [
+        { "id": "dr-003", "nama": "dr. Budi Santoso Sp.B", "spesialisasi": "Bedah Umum", "jadwal": ["Senin", "Selasa", "Kamis"] }
+      ]
+    },
+    {
+      "id": "poli-003",
+      "nama": "Anak",
+      "dokter": [
+        { "id": "dr-004", "nama": "dr. Dewi Kusuma Sp.A", "spesialisasi": "Anak", "jadwal": ["Senin", "Rabu", "Sabtu"] },
+        { "id": "dr-005", "nama": "dr. Rizal Hakim Sp.A", "spesialisasi": "Anak", "jadwal": ["Selasa", "Kamis", "Jumat"] }
+      ]
+    },
+    {
+      "id": "poli-004",
+      "nama": "Kandungan",
+      "dokter": [
+        { "id": "dr-006", "nama": "dr. Rina Ayu Sp.OG", "spesialisasi": "Obstetri & Ginekologi", "jadwal": ["Selasa", "Kamis", "Sabtu"] }
+      ]
+    }
+  ],
+  "antrian": [
+    {
+      "antrean_id": "ant-001",
+      "nomor_antrean": "A-001",
+      "poli": "Penyakit Dalam",
+      "poli_id": "poli-001",
+      "dokter": "dr. Ahmad Fauzi Sp.PD",
+      "estimasi_jam": "08:30",
+      "status": "selesai",
+      "tanggal": "2026-06-08",
+      "pasien_nama": "Budi Santara",
+      "pasien_nik": "3578010101900001"
+    },
+    {
+      "antrean_id": "ant-002",
+      "nomor_antrean": "A-002",
+      "poli": "Penyakit Dalam",
+      "poli_id": "poli-001",
+      "dokter": "dr. Ahmad Fauzi Sp.PD",
+      "estimasi_jam": "08:45",
+      "status": "dipanggil",
+      "tanggal": "2026-06-08",
+      "pasien_nama": "Sari Dewi",
+      "pasien_nik": "3578010101900002"
+    },
+    {
+      "antrean_id": "ant-003",
+      "nomor_antrean": "A-003",
+      "poli": "Penyakit Dalam",
+      "poli_id": "poli-001",
+      "dokter": "dr. Ahmad Fauzi Sp.PD",
+      "estimasi_jam": "09:00",
+      "status": "menunggu",
+      "tanggal": "2026-06-08",
+      "pasien_nama": "Ahmad Maulana",
+      "pasien_nik": "3578010101900003"
+    },
+    {
+      "antrean_id": "ant-004",
+      "nomor_antrean": "B-001",
+      "poli": "Bedah Umum",
+      "poli_id": "poli-002",
+      "dokter": "dr. Budi Santoso Sp.B",
+      "estimasi_jam": "09:15",
+      "status": "menunggu",
+      "tanggal": "2026-06-08",
+      "pasien_nama": "Eko Prasetyo",
+      "pasien_nik": "3578010101900004"
+    },
+    {
+      "antrean_id": "ant-005",
+      "nomor_antrean": "C-001",
+      "poli": "Anak",
+      "poli_id": "poli-003",
+      "dokter": "dr. Dewi Kusuma Sp.A",
+      "estimasi_jam": "09:30",
+      "status": "menunggu",
+      "tanggal": "2026-06-08",
+      "pasien_nama": "Nurul Hidayah",
+      "pasien_nik": "3578010101900005"
+    }
+  ],
+  "kamar": [
+    { "id": "km-001", "nama": "Flamboyan", "kelas": "VIP", "kapasitas": 10, "terisi": 7 },
+    { "id": "km-002", "nama": "Melati", "kelas": "Kelas 1", "kapasitas": 20, "terisi": 15 },
+    { "id": "km-003", "nama": "Mawar", "kelas": "Kelas 2", "kapasitas": 30, "terisi": 22 },
+    { "id": "km-004", "nama": "Kenanga", "kelas": "Kelas 3", "kapasitas": 40, "terisi": 18 }
+  ]
+}
