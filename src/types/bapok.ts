@@ -55,3 +55,21 @@ export interface Pasar {
   id: string;
   nama: string;
 }
+
+export interface Koperasi {
+  id: string;
+  nama: string;
+  kota?: string;
+}
+
+export interface HargaKoperasi {
+  id: string;
+  komoditas_id: string;
+  nama_komoditas?: string;
+  koperasi_id: string;
+  nama_koperasi?: string;
+  harga: number;
+  tanggal: string;
+  input_oleh?: string;
+  created_at?: string;
+}

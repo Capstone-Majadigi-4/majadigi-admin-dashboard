@@ -4,7 +4,14 @@ import { Badge, Button, Card, CardBody, CardHeader, Modal } from '../../componen
 import { useFetch } from '../../hooks/useFetch';
 import { apiFetch } from '../../services/apiClient';
 import { useUIStore } from '../../store/useUIStore';
-import type { HargaHarian, Komoditas } from '../../types';
+import type { HargaHarian, Komoditas, Koperasi } from '../../types';
+
+interface InputHargaKoperasiForm {
+  komoditas_id: string;
+  koperasi_id: string;
+  harga: string;
+  tanggal: string;
+}
 
 const BAPOK_ADMIN_KEY = import.meta.env.VITE_BAPOK_ADMIN_KEY as string | undefined;
 
@@ -36,12 +43,20 @@ export function HargaBapok() {
 
   const { data: harga, loading: loadingHarga, refetch: refetchHarga } = useFetch<HargaHarian[]>(hargaParams);
   const { data: komoditas, loading: loadingKomoditas } = useFetch<Komoditas[]>('/bapok/komoditas');
+  const { data: koperasiList } = useFetch<Koperasi[]>('/bapok/koperasi');
 
   const [showInputModal, setShowInputModal] = useState(false);
+  const [showKoperasiModal, setShowKoperasiModal] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [form, setForm] = useState<InputHargaForm>({
     komoditas_id: '',
     pasar_id: '',
+    harga: '',
+    tanggal: todayISO(),
+  });
+  const [koperasiForm, setKoperasiForm] = useState<InputHargaKoperasiForm>({
+    komoditas_id: '',
+    koperasi_id: '',
     harga: '',
     tanggal: todayISO(),
   });
@@ -67,7 +82,7 @@ export function HargaBapok() {
         body: {
           komoditas_id: form.komoditas_id,
           pasar_id: form.pasar_id,
-          harga: parseFloat(form.harga),
+          harga: Number.parseFloat(form.harga),
           tanggal: form.tanggal,
         },
       });
@@ -78,6 +93,33 @@ export function HargaBapok() {
       setTanggalFilter(form.tanggal);
     } catch (err) {
       addNotification({ type: 'error', message: err instanceof Error ? err.message : 'Gagal input harga' });
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  const handleInputHargaKoperasi = async () => {
+    if (!koperasiForm.komoditas_id || !koperasiForm.koperasi_id || !koperasiForm.harga || !koperasiForm.tanggal) {
+      addNotification({ type: 'error', message: 'Semua field wajib diisi' });
+      return;
+    }
+    setSubmitting(true);
+    try {
+      await apiFetch('/bapok/admin/harga-koperasi', {
+        method: 'POST',
+        adminKey: BAPOK_ADMIN_KEY,
+        body: {
+          komoditas_id: koperasiForm.komoditas_id,
+          koperasi_id: koperasiForm.koperasi_id,
+          harga: Number.parseFloat(koperasiForm.harga),
+          tanggal: koperasiForm.tanggal,
+        },
+      });
+      addNotification({ type: 'success', message: 'Harga koperasi berhasil diinput' });
+      setShowKoperasiModal(false);
+      setKoperasiForm({ komoditas_id: '', koperasi_id: '', harga: '', tanggal: todayISO() });
+    } catch (err) {
+      addNotification({ type: 'error', message: err instanceof Error ? err.message : 'Gagal input harga koperasi' });
     } finally {
       setSubmitting(false);
     }
@@ -118,8 +160,11 @@ export function HargaBapok() {
             Upload CSV
           </Button>
           <input ref={csvRef} type="file" accept=".csv" className="hidden" onChange={handleBulkCSV} />
+          <Button variant="secondary" size="sm" onClick={() => setShowKoperasiModal(true)}>
+            + Harga Koperasi
+          </Button>
           <Button size="sm" onClick={() => setShowInputModal(true)}>
-            + Input Harga
+            + Harga Pasar
           </Button>
         </div>
       }
@@ -220,6 +265,71 @@ export function HargaBapok() {
             ))}
         </div>
       </Card>
+
+      <Modal
+        open={showKoperasiModal}
+        title="Input Harga Koperasi"
+        onClose={() => setShowKoperasiModal(false)}
+        footer={
+          <div className="flex justify-end gap-2">
+            <Button variant="secondary" onClick={() => setShowKoperasiModal(false)}>Batal</Button>
+            <Button loading={submitting} onClick={handleInputHargaKoperasi}>Simpan</Button>
+          </div>
+        }
+      >
+        <div className="space-y-4">
+          <div>
+            <label htmlFor="kop-komoditas" className={labelCls}>Komoditas</label>
+            <select
+              id="kop-komoditas"
+              value={koperasiForm.komoditas_id}
+              onChange={(e) => setKoperasiForm((f) => ({ ...f, komoditas_id: e.target.value }))}
+              className={inputCls}
+            >
+              <option value="">-- Pilih komoditas --</option>
+              {(komoditas ?? []).filter((k) => k.is_active).map((k) => (
+                <option key={k.id} value={k.id}>{k.nama} ({k.satuan})</option>
+              ))}
+            </select>
+          </div>
+          <div>
+            <label htmlFor="kop-koperasi" className={labelCls}>Koperasi</label>
+            <select
+              id="kop-koperasi"
+              value={koperasiForm.koperasi_id}
+              onChange={(e) => setKoperasiForm((f) => ({ ...f, koperasi_id: e.target.value }))}
+              className={inputCls}
+            >
+              <option value="">-- Pilih koperasi --</option>
+              {(koperasiList ?? []).map((k) => (
+                <option key={k.id} value={k.id}>{k.nama}</option>
+              ))}
+            </select>
+          </div>
+          <div>
+            <label htmlFor="kop-harga" className={labelCls}>Harga (Rp)</label>
+            <input
+              id="kop-harga"
+              type="number"
+              min={0}
+              placeholder="Contoh: 15000"
+              value={koperasiForm.harga}
+              onChange={(e) => setKoperasiForm((f) => ({ ...f, harga: e.target.value }))}
+              className={inputCls}
+            />
+          </div>
+          <div>
+            <label htmlFor="kop-tanggal" className={labelCls}>Tanggal</label>
+            <input
+              id="kop-tanggal"
+              type="date"
+              value={koperasiForm.tanggal}
+              onChange={(e) => setKoperasiForm((f) => ({ ...f, tanggal: e.target.value }))}
+              className={inputCls}
+            />
+          </div>
+        </div>
+      </Modal>
 
       <Modal
         open={showInputModal}
